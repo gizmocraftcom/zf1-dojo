@@ -30,23 +30,31 @@ class Zend_Dojo
 {
     /**
      * Base path to AOL CDN
+     *
+     * @deprecated The AOL CDN no longer serves Dojo (HTTP 403). Kept so existing code keeps working; use
+     *             Zend_Dojo::CDN_BASE_GOOGLE or another CDN through setCdnBase().
      */
-    const CDN_BASE_AOL = 'http://o.aolcdn.com/dojo/';
+    const CDN_BASE_AOL = 'https://o.aolcdn.com/dojo/';
 
     /**
      * Path to dojo on AOL CDN (following version string)
+     *
+     * @deprecated See Zend_Dojo::CDN_BASE_AOL.
      */
     const CDN_DOJO_PATH_AOL = '/dojo/dojo.xd.js';
 
     /**
      * Base path to Google CDN
      */
-    const CDN_BASE_GOOGLE = 'http://ajax.googleapis.com/ajax/libs/dojo/';
+    const CDN_BASE_GOOGLE = 'https://ajax.googleapis.com/ajax/libs/dojo/';
 
     /**
      * Path to dojo on Google CDN (following version string)
+     *
+     * Dojo 1.7 and later is cross-domain capable through dojo.js; the Google CDN has no dojo.xd.js after 1.6.1.
+     * For Dojo 1.6.1 and earlier call setCdnDojoPath('/dojo/dojo.xd.js').
      */
-    const CDN_DOJO_PATH_GOOGLE = '/dojo/dojo.xd.js';
+    const CDN_DOJO_PATH_GOOGLE = '/dojo/dojo.js';
 
     /**
      * Dojo-enable a form instance

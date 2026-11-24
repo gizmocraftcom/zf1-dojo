@@ -10,3 +10,7 @@
 This is just the Zend_Dojo component extracted from our fork of the Zend Framework 1 repo (https://github.com/gizmocraftcom/zf1).
 
 Originally forked from the upstream repository https://github.com/diablomedia/zf1-dojo. Copyright and license of the original authors are kept in LICENSE.txt.
+
+## Dojo CDN defaults
+
+Unless you configure a local path (`setLocalPath()`) or another CDN (`setCdnBase()`, `setCdnVersion()`, `setCdnDojoPath()`), the Dojo view helper loads Dojo 1.14.1 from `https://ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js`. This is the newest Dojo 1.x release on the Google CDN. The previous defaults (Dojo 1.5.0 over HTTP with `dojo.xd.js`) are replaced, and the AOL CDN constants are deprecated because that CDN no longer serves Dojo. See `CHANGELOG.md` for how to pin an older version.
