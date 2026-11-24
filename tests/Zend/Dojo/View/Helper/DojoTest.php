@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_View_Helper_Dojo.
@@ -29,9 +31,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_View
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_View')]
 class Zend_Dojo_View_Helper_DojoTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -98,9 +100,7 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit\Framework\TestCase
         $this->assertContains('foo.bar', $modules);
     }
 
-    /**
-     * @group ZF-3914
-     */
+    #[Group('ZF-3914')]
     public function testShouldAllowRequiringMultipleModulesAtOnce()
     {
         $modules = array('foo.bar', 'bar.baz', 'baz.bat');
@@ -121,10 +121,8 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3916
-     * @doesNotPerformAssertions
-     */
+    #[Group('ZF-3916')]
+    #[DoesNotPerformAssertions]
     public function testRequireModuleShouldAllowDashAndUnderscoreCharacters()
     {
         $this->helper->requireModule('dojox.highlight.language._www');
@@ -201,7 +199,7 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit\Framework\TestCase
     public function testShouldUseLatestVersionWhenUsingCdnByDefault()
     {
         $this->helper->enable();
-        $this->assertEquals('1.5.0', $this->helper->getCdnVersion());
+        $this->assertEquals('1.14.1', $this->helper->getCdnVersion());
     }
 
     public function testShouldAllowSpecifyingDojoVersionWhenUtilizingCdn()
@@ -210,34 +208,30 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('1.0', $this->helper->getCdnVersion());
     }
 
-    /**
-     * @group GH-488
-     */
+    #[Group('GH-488')]
     public function testSetCdnVersionForHigherMinorReleases()
     {
         $this->helper->setCdnVersion('1.10');
         $this->assertEquals('1.10', $this->helper->getCdnVersion());
     }
 
-    /**
-     * @group GH-488
-     */
+    #[Group('GH-488')]
     public function testSetCdnVersionForHigherMiniReleases()
     {
         $this->helper->setCdnVersion('1.10.29');
         $this->assertEquals('1.10.29', $this->helper->getCdnVersion());
     }
 
-    public function testShouldUseAolCdnDojoPathByDefault()
+    public function testShouldUseGoogleCdnDojoPathByDefault()
     {
-        $this->assertEquals(Zend_Dojo::CDN_DOJO_PATH_AOL, $this->helper->getCdnDojoPath());
+        $this->assertEquals(Zend_Dojo::CDN_DOJO_PATH_GOOGLE, $this->helper->getCdnDojoPath());
     }
 
     public function testShouldAllowSpecifyingCdnDojoPath()
     {
-        $this->testShouldUseAolCdnDojoPathByDefault();
-        $this->helper->setCdnDojoPath(Zend_Dojo::CDN_DOJO_PATH_GOOGLE);
-        $this->assertEquals(Zend_Dojo::CDN_DOJO_PATH_GOOGLE, $this->helper->getCdnDojoPath());
+        $this->testShouldUseGoogleCdnDojoPathByDefault();
+        $this->helper->setCdnDojoPath(Zend_Dojo::CDN_DOJO_PATH_AOL);
+        $this->assertEquals(Zend_Dojo::CDN_DOJO_PATH_AOL, $this->helper->getCdnDojoPath());
     }
 
     public function testShouldAllowSpecifyingLocalDojoInstall()
@@ -304,10 +298,8 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit\Framework\TestCase
         $this->assertContains('dijit.themes.tundra', $stylesheets);
     }
 
-    /**
-     * @group ZF-3916
-     * @doesNotPerformAssertions
-     */
+    #[Group('ZF-3916')]
+    #[DoesNotPerformAssertions]
     public function testAddingStylesheetModuleShouldAllowDashAndUnderscoreCharacters()
     {
         $this->helper->addStylesheetModule('dojox._highlight.pygments');
@@ -428,7 +420,7 @@ function() {
                     $this->assertStringContainsString('parseOnLoad', $script);
                     break;
                 case 1:
-                    $this->assertMatchesRegularExpression('#src="http://.+/dojo/[0-9.]+/dojo/dojo.xd.js"#', $script);
+                    $this->assertMatchesRegularExpression('#src="https://ajax.googleapis.com/ajax/libs/dojo/[0-9.]+/dojo/dojo.js"#', $script);
                     $this->assertStringContainsString('/>', $script);
                     break;
                 case 2:
@@ -445,7 +437,7 @@ function() {
         $style = $doc->saveXML($results->item(0));
         $this->assertStringContainsString('@import', $style);
         $this->assertEquals(2, substr_count($style, '@import'));
-        $this->assertEquals(1, substr_count($style, 'http://ajax.googleapis.com/ajax/libs/dojo/'), $style);
+        $this->assertEquals(1, substr_count($style, 'https://ajax.googleapis.com/ajax/libs/dojo/'), $style);
         $this->assertStringContainsString('css/custom.css', $style);
         $this->assertStringContainsString('dijit/themes/tundra/tundra.css', $style);
     }
@@ -799,9 +791,7 @@ function() {
         $this->assertTrue(Zend_Dojo_View_Helper_Dojo::useProgrammatic());
     }
 
-    /**
-     * @group ZF-3962
-     */
+    #[Group('ZF-3962')]
     public function testHelperShouldAllowDisablingParseOnLoadWithDeclarativeStyle()
     {
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
@@ -815,9 +805,7 @@ function() {
         $this->assertStringNotContainsString('"parseOnLoad":true', $matches[1]);
     }
 
-    /**
-     * @group ZF-4522
-     */
+    #[Group('ZF-4522')]
     public function testOnLoadCaptureStartShouldReturnVoid()
     {
         $test = $this->helper->onLoadCaptureStart();
@@ -825,9 +813,7 @@ function() {
         $this->assertNull($test);
     }
 
-    /**
-     * @group ZF-4522
-     */
+    #[Group('ZF-4522')]
     public function testJavascriptCaptureStartShouldReturnVoid()
     {
         $test = $this->helper->javascriptCaptureStart();
@@ -835,10 +821,8 @@ function() {
         $this->assertNull($test);
     }
 
-    /**
-     * @group ZF-4587
-     * @group ZF-5808
-     */
+    #[Group('ZF-4587')]
+    #[Group('ZF-5808')]
     public function testZendDijitOnLoadMarkupShouldPrecedeAllOtherOnLoadEvents()
     {
         $this->helper->addOnLoad('zend.custom');
@@ -914,9 +898,7 @@ function() {
         $this->assertMatchesRegularExpression('#(function\\(\\){alert\\(\'foo\'\\);})#', $output);
     }
 
-    /**
-     * @group GH-340
-     */
+    #[Group('GH-340')]
     public function testRenderStylesheetsOrder()
     {
         $helper  = $this->helper;

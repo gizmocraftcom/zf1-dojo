@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_View_Helper_Editor.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_View
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_View')]
 class Zend_Dojo_View_Helper_EditorTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -150,9 +151,7 @@ class Zend_Dojo_View_Helper_EditorTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->view->dojo()->registerDojoStylesheet());
     }
 
-    /**
-     * @group ZF-4461
-     */
+    #[Group('ZF-4461')]
     public function testHelperShouldRegisterPluginModulesWithDojo()
     {
         $plugins = array(
@@ -167,36 +166,30 @@ class Zend_Dojo_View_Helper_EditorTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-6753
-     * @group ZF-8127
-     */
+    #[Group('ZF-6753')]
+    #[Group('ZF-8127')]
     public function testHelperShouldUseDivByDefault()
     {
         $html = $this->helper->editor('foo');
         $this->assertMatchesRegularExpression('#</?div[^>]*>#', $html, $html);
     }
 
-    /**
-     * @group ZF-6753
-     * @group ZF-8127
-     */
+    #[Group('ZF-6753')]
+    #[Group('ZF-8127')]
     public function testHelperShouldOnlyUseTextareaInNoscriptTag()
     {
         $html = $this->helper->editor('foo');
         $this->assertMatchesRegularExpression('#<noscript><textarea[^>]*>#', $html, $html);
     }
 
-    /**
-     * @group ZF-11315
-     */
+    #[Group('ZF-11315')]
     public function testHiddenInputShouldBeRenderedLast()
     {
         $html = $this->helper->editor('foo');
         $this->assertMatchesRegularExpression('#</noscript><input#', $html, $html);
     }
 
-    /** @group ZF-5711 */
+    #[Group('ZF-5711')]
     public function testHelperShouldJsonifyExtraPlugins()
     {
         $extraPlugins  = array('copy', 'cut', 'paste');

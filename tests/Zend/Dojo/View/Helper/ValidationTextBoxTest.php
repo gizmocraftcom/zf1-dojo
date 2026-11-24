@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_View_Helper_ValidationTextBox.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_View
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_View')]
 class Zend_Dojo_View_Helper_ValidationTextBoxTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -103,18 +104,14 @@ class Zend_Dojo_View_Helper_ValidationTextBoxTest extends PHPUnit\Framework\Test
         $this->assertMatchesRegularExpression('/<input[^>]*(type="text")/', $html);
     }
 
-    /**
-     * @group ZF-7660
-     */
+    #[Group('ZF-7660')]
     public function testTrueRequiredParameterShouldBeRenderedAsStringValue()
     {
         $html = $this->getElement();
         $this->assertStringContainsString('required="true"', $html);
     }
 
-    /**
-     * @group ZF-7660
-     */
+    #[Group('ZF-7660')]
     public function testFalseRequiredParameterShouldBeRenderedAsStringValue()
     {
         $html = $this->helper->validationTextBox(

@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_Form_Element_DateTextBox.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_Form
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_Form')]
 class Zend_Dojo_Form_Element_DateTextBoxTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -174,9 +175,7 @@ class Zend_Dojo_Form_Element_DateTextBoxTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('dojoType="dijit.form.DateTextBox"', $html);
     }
 
-    /**
-     * @group ZF-7813
-     */
+    #[Group('ZF-7813')]
     public function testCanSetValue()
     {
         $this->element->setValue('2011-05-10');

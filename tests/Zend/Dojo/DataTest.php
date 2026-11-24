@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,8 +28,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
  */
+#[Group('Zend_Dojo')]
 class Zend_Dojo_DataTest extends PHPUnit\Framework\TestCase
 {
     public $dojoData;
@@ -455,9 +456,7 @@ class Zend_Dojo_DataTest extends PHPUnit\Framework\TestCase
         $this->dojoData->fromJson(new stdClass);
     }
 
-    /**
-     * @group ZF-3841
-     */
+    #[Group('ZF-3841')]
     public function testDataContainerShouldAcceptAdditionalMetadataPerKey()
     {
         $this->assertNull($this->dojoData->getMetadata('numRows'));
@@ -465,9 +464,7 @@ class Zend_Dojo_DataTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(100, $this->dojoData->getMetadata('numRows'));
     }
 
-    /**
-     * @group ZF-3841
-     */
+    #[Group('ZF-3841')]
     public function testDataContainerShouldAcceptAdditionalMetadataEnMasse()
     {
         $metadata = $this->dojoData->getMetadata();
@@ -480,9 +477,7 @@ class Zend_Dojo_DataTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($metadata, $test);
     }
 
-    /**
-     * @group ZF-3841
-     */
+    #[Group('ZF-3841')]
     public function testDataContainerShouldAllowClearingIndividualMetadataItems()
     {
         $this->testDataContainerShouldAcceptAdditionalMetadataEnMasse();
@@ -493,9 +488,7 @@ class Zend_Dojo_DataTest extends PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('sort', $metadata);
     }
 
-    /**
-     * @group ZF-3841
-     */
+    #[Group('ZF-3841')]
     public function testDataContainerShouldAllowClearingMetadataEnMasse()
     {
         $this->testDataContainerShouldAcceptAdditionalMetadataEnMasse();
@@ -504,9 +497,7 @@ class Zend_Dojo_DataTest extends PHPUnit\Framework\TestCase
         $this->assertCount(0, $metadata);
     }
 
-    /**
-     * @group ZF-3841
-     */
+    #[Group('ZF-3841')]
     public function testSerializingToArrayShouldIncludeMetadata()
     {
         $this->testDataContainerShouldAcceptAdditionalMetadataEnMasse();

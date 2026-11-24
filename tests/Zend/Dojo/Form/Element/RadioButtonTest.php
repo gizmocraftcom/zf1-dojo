@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_Form_Element_RadioButton.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_Form
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_Form')]
 class Zend_Dojo_Form_Element_RadioButtonTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -156,8 +157,8 @@ class Zend_Dojo_Form_Element_RadioButtonTest extends PHPUnit\Framework\TestCase
     }
 
     /**#+
-     * @group ZF-3286
      */
+    #[Group('ZF-3286')]
     public function testShouldRegisterInArrayValidatorByDefault()
     {
         $this->assertTrue($this->element->registerInArrayValidator());

@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_View_Helper_CheckBox.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_View
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_View')]
 class Zend_Dojo_View_Helper_CheckBoxTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -116,9 +117,7 @@ class Zend_Dojo_View_Helper_CheckBoxTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('checked="checked"', $m[1]);
     }
 
-    /**
-     * @group ZF-4006
-     */
+    #[Group('ZF-4006')]
     public function testElementShouldUseCheckedValueForCheckboxInput()
     {
         $html = $this->helper->checkBox('foo', '0', array(), array(), array(
@@ -132,9 +131,7 @@ class Zend_Dojo_View_Helper_CheckBoxTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('checked', $matches[1]);
     }
 
-    /**
-     * @group ZF-3878
-     */
+    #[Group('ZF-3878')]
     public function testElementShouldCreateAppropriateIdWhenNameIncludesArrayNotation()
     {
         $html = $this->helper->checkBox('foo[bar]', '0');

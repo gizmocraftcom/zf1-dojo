@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_View_Helper_HorizontalSlider.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_View
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_View')]
 class Zend_Dojo_View_Helper_HorizontalSliderTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -235,9 +236,7 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends PHPUnit\Framework\TestC
         $this->assertStringContainsString('minimum="', $html);
     }
 
-    /**
-     * @group ZF-4435
-     */
+    #[Group('ZF-4435')]
     public function testShouldCreateAppropriateIdsForElementsInSubForms()
     {
         $form = new Zend_Dojo_Form;
@@ -282,9 +281,7 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends PHPUnit\Framework\TestC
         $this->assertStringContainsString('id="slidertab-slide1-slider-topDecoration-labels"', $html);
     }
 
-    /**
-     * @group ZF-5220
-     */
+    #[Group('ZF-5220')]
     public function testLabelDivShouldOpenAndCloseBeforeLabelOl()
     {
         $html = $this->getElement();

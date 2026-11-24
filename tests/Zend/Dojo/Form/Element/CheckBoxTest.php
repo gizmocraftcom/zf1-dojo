@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_Form_Element_Checkbox.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_Form
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_Form')]
 class Zend_Dojo_Form_Element_CheckBoxTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -220,18 +221,14 @@ class Zend_Dojo_Form_Element_CheckBoxTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('dojoType="dijit.form.CheckBox"', $html);
     }
 
-    /**
-     * @group ZF-3879
-     */
+    #[Group('ZF-3879')]
     public function testOptionsShouldNotBeRenderedAsElementAttribute()
     {
         $html = $this->element->render();
         $this->assertStringNotContainsString('options="', $html, $html);
     }
 
-    /**
-     * @group ZF-4274
-     */
+    #[Group('ZF-4274')]
     public function testCheckedValuesCanBePassedInConstructor()
     {
         $element = new Zend_Dojo_Form_Element_CheckBox('myCheckbox', array(

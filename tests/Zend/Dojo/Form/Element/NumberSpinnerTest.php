@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_Form_Element_NumberSpinner.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_Form
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_Form')]
 class Zend_Dojo_Form_Element_NumberSpinnerTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -162,9 +163,7 @@ class Zend_Dojo_Form_Element_NumberSpinnerTest extends PHPUnit\Framework\TestCas
         $this->assertStringContainsString('dojoType="dijit.form.NumberSpinner"', $html);
     }
 
-    /**
-     * @group ZF-4638
-     */
+    #[Group('ZF-4638')]
     public function testRenderingShouldOutputMinAndMaxConstraints()
     {
         $this->element->setMin(5)

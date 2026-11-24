@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_View_Helper_ContentPane.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_View
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_View')]
 class Zend_Dojo_View_Helper_ContentPaneTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -89,9 +90,7 @@ class Zend_Dojo_View_Helper_ContentPaneTest extends PHPUnit\Framework\TestCase
         $this->assertNotNull($this->view->dojo()->getDijit('pane1'));
     }
 
-    /**
-     * @group ZF-3877
-     */
+    #[Group('ZF-3877')]
     public function testContentPaneMarkupShouldNotContainNameAttribute()
     {
         $html = $this->view->contentPane('pane1', 'This is the pane content', array('id' => 'pane', 'title' => 'Pane 1'));
@@ -102,9 +101,7 @@ class Zend_Dojo_View_Helper_ContentPaneTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('name="/', $html, $html);
     }
 
-    /**
-     * @group ZF-4522
-     */
+    #[Group('ZF-4522')]
     public function testCaptureStartShouldReturnVoid()
     {
         $test = $this->view->contentPane()->captureStart('pane1');

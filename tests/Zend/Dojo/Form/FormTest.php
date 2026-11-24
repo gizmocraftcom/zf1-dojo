@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_Form and Zend_Dojo_Form_DisplayGroup
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_Form
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_Form')]
 class Zend_Dojo_Form_FormTest extends PHPUnit\Framework\TestCase
 {
     protected $form;
@@ -111,9 +112,7 @@ class Zend_Dojo_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertIsArray($paths);
     }
 
-    /**
-     * @group ZF-4748
-     */
+    #[Group('ZF-4748')]
     public function testHtmlTagDecoratorShouldHaveZendFormDojoClassByDefault()
     {
         $decorator = $this->form->getDecorator('HtmlTag');

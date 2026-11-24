@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_Form_Element_Editor.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_Form
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_Form')]
 class Zend_Dojo_Form_Element_EditorTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -267,14 +268,14 @@ class Zend_Dojo_Form_Element_EditorTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('10em', $this->element->getMinHeight());
     }
 
-    /** @group ZF-11511 */
+    #[Group('ZF-11511')]
     public function testShouldNotHaveExtraPluginsByDefault()
     {
         $extraPlugins = $this->element->getExtraPlugins();
         $this->assertEmpty($extraPlugins);
     }
 
-    /** @group ZF-11511 */
+    #[Group('ZF-11511')]
     public function testExtraPluginAccessorsShouldProxyToDijitParams()
     {
         $this->element->setExtraPlugins(array('undo', 'bold', 'italic'));

@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Dojo_View_Helper_ComboBox.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Dojo
- * @group      Zend_Dojo_View
  */
+#[Group('Zend_Dojo')]
+#[Group('Zend_Dojo_View')]
 class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -173,10 +174,8 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('url="states.txt"', $m[1]);
     }
 
-    /**
-     * @group ZF-5987
-     * @group ZF-7266
-     */
+    #[Group('ZF-5987')]
+    #[Group('ZF-7266')]
     public function testStoreCreationWhenUsingProgrammaticCreationShouldRegisterAsDojoJavascript()
     {
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic(true);
